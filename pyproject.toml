@@ -1,0 +1,45 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "osv-dedupe"
+version = "0.1.0"
+description = "Score whether a security finding already overlaps a published OSV/NVD advisory for a PyPI package, so scanners can skip known vulnerabilities."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE" }
+authors = [{ name = "krc7169", email = "krc7169@gmail.com" }]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Security",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = ["requests>=2.20"]
+
+[project.urls]
+Homepage = "https://github.com/rahulreddykarne/osv-dedupe"
+Repository = "https://github.com/rahulreddykarne/osv-dedupe"
+Issues = "https://github.com/rahulreddykarne/osv-dedupe/issues"
+Changelog = "https://github.com/rahulreddykarne/osv-dedupe/releases"
+
+[project.scripts]
+osv-dedupe = "osv_dedupe.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7", "build", "twine"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/osv_dedupe"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/osv_dedupe", "README.md", "LICENSE", "tests"]
